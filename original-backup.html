@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFF8ED">
+<title>Save the Date · Trupti &amp; Krushna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* CUSTOMISE COLOURS / FONTS HERE */
+:root{
+  --ivory:#FFF8ED; --blush:#E9B9B3; --sage:#7D8568; --gold:#C6A15B; --olive:#454936;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --script:"Great Vibes","Segoe Script","Brush Script MT",cursive;
+  --sans:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;min-height:100%;background:var(--ivory) radial-gradient(circle at 50% 0,#fffdf7,var(--ivory) 60%,#f8ecd9);color:var(--olive);font-family:var(--sans);overflow-x:hidden}
+/* paper texture */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6;mix-blend-mode:multiply;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+.corner{position:fixed;width:min(30vw,140px);height:auto;aspect-ratio:1;pointer-events:none;z-index:1;opacity:.95}
+.corner.tl{top:env(safe-area-inset-top,0px);left:0}
+.corner.tr{top:env(safe-area-inset-top,0px);right:0;transform:scaleX(-1)}
+.corner.bl{bottom:env(safe-area-inset-bottom,0px);left:0;transform:scaleY(-1)}
+.corner.br{bottom:env(safe-area-inset-bottom,0px);right:0;transform:scale(-1)}
+.screen{position:relative;z-index:2;min-height:calc(100svh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px 22px;transition:opacity .7s ease,transform .7s ease}
+.float{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.fh{position:absolute;bottom:-30px;animation:floatUp linear infinite;opacity:0}
+.sp{position:absolute;color:var(--gold);animation:twinkle ease-in-out infinite}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.65}100%{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@keyframes twinkle{0%,100%{opacity:.1;transform:scale(.6)}50%{opacity:1;transform:scale(1.2)}}
+.kicker{font:500 11px/1 var(--sans);letter-spacing:.34em;color:var(--sage);margin:0 0 18px}
+h1{font:600 clamp(30px,9vw,44px)/1.1 var(--serif);margin:0 0 14px;color:var(--olive)}
+.names{font:400 clamp(38px,12vw,56px)/1.15 var(--script);color:var(--gold);margin:0;text-shadow:0 1px 0 #fff8}
+.sub{font:italic 500 18px/1.5 var(--serif);margin:12px 0 22px;color:var(--olive);max-width:300px}
+.seal{width:112px;height:auto;margin:6px 0 24px;filter:drop-shadow(0 0 14px rgba(198,161,91,.8));animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.07);filter:drop-shadow(0 0 24px rgba(198,161,91,1))}}
+.btn{appearance:none;border:0;cursor:pointer;min-height:48px;padding:14px 28px;border-radius:999px;font:600 12px/1 var(--sans);letter-spacing:.22em;color:var(--olive);background:linear-gradient(135deg,#ecd596,var(--gold) 50%,#e3c880);box-shadow:0 8px 22px rgba(198,161,91,.45),inset 0 1px 0 #fff9;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)} .btn:active{transform:scale(.97)}
+.btn:focus-visible,.card h2:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.btn.ghost{background:transparent;border:1.5px solid var(--gold);box-shadow:none}
+.leaving{opacity:0;transform:scale(.96)}
+/* card */
+.card{opacity:0;transform:translateY(18px)} .card.show{opacity:1;transform:none}
+.card h2{font:600 15px/1 var(--serif);letter-spacing:.42em;margin:0 0 6px;padding-left:.42em;color:var(--olive)}
+.card .names{font-size:clamp(34px,10vw,46px)}
+.orn{width:170px;height:14px;margin:6px auto}
+.instr{font:italic 500 17px/1.4 var(--serif);margin:4px 0 16px}
+.heart-wrap{position:relative;width:min(100%,360px);aspect-ratio:1/.92;container-type:inline-size;filter:drop-shadow(0 10px 16px rgba(198,161,91,.45))}
+.heart-wrap>*{position:absolute;inset:0;width:100%;height:100%}
+.clipped{clip-path:url(#heartClip)}
+.reveal{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:21% 19% 15%;background:radial-gradient(circle at 50% 35%,#fffdf6,#fbe8e0 70%,#f1cfc8)}
+.reveal p{margin:0}
+.r1{font:600 11px/1 var(--sans);font-size:3.1cqw;letter-spacing:.3em;color:var(--sage)}
+.r2{font:700 18px/1.15 var(--serif);font-size:5.3cqw;letter-spacing:.1em;margin:2.2cqw 0 1.2cqw!important}
+.r3{font:500 10px/1 var(--sans);font-size:2.7cqw;letter-spacing:.2em;color:var(--olive)}
+.date{margin-top:3cqw!important;padding:2cqw 4cqw;border:1.5px solid var(--gold);border-radius:12px;box-shadow:0 0 18px rgba(198,161,91,.45),inset 0 0 12px rgba(198,161,91,.2);background:#fffaf0cc}
+.date b{display:block;font-weight:600}
+.d1{font:600 10px var(--sans);font-size:2.8cqw;letter-spacing:.3em;color:var(--sage)}
+.d2{font:700 28px/1.05 var(--serif);font-size:8.2cqw;color:var(--gold);text-shadow:0 0 14px rgba(198,161,91,.6)}
+.d3{font:600 18px var(--serif);font-size:5.2cqw;letter-spacing:.25em;color:var(--olive)}
+.sheen{pointer-events:none;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.55) 50%,transparent 62%);background-size:260% 100%;animation:sweep 3.2s ease-in-out infinite;transition:opacity .9s}
+@keyframes sweep{0%{background-position:130% 0}100%{background-position:-30% 0}}
+canvas.scratch{display:block;cursor:crosshair;touch-action:none;transition:opacity .9s ease;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.gone,.gone+.sheen{opacity:0}
+.outline{pointer-events:none;overflow:visible}
+.hint{pointer-events:none;inset:auto!important;left:30%;top:42%;width:auto!important;height:auto!important;font-size:34px;animation:swipe 2.2s ease-in-out infinite;transition:opacity .4s}
+.hint.off{opacity:0;animation:none}
+@keyframes swipe{0%,100%{transform:translate(0,0) rotate(-10deg)}50%{transform:translate(70px,18px) rotate(-10deg)}}
+.tip{font:500 11px/1.4 var(--sans);letter-spacing:.08em;margin:14px 0 0;color:var(--sage)}
+.details{margin-top:22px;max-width:340px;animation:rise .9s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+.tag{font:italic 600 21px/1.3 var(--serif);margin:0 0 12px}
+.when{font:600 12px/1.8 var(--sans);letter-spacing:.14em;margin:0 0 14px}
+.when span{color:var(--sage)}
+.note{font:500 16px/1.5 var(--serif);margin:0 0 6px}
+.love{font:400 28px/1.3 var(--script);color:var(--gold);margin:0 0 18px}
+.scene{width:min(100%,300px);height:auto;margin:26px 0 10px;border-radius:16px;box-shadow:0 6px 18px rgba(69,73,54,.15)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 18px}
+.chips span{font:500 11px/1 var(--sans);letter-spacing:.1em;padding:7px 12px;border:1px solid var(--gold);border-radius:999px;background:#fff8}
+footer{font:500 10px/1 var(--sans);letter-spacing:.28em;color:var(--sage);text-transform:uppercase}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.bh{position:fixed;bottom:-30px;pointer-events:none;z-index:49;animation:burst ease-out forwards}
+@keyframes burst{to{transform:translateY(-105vh) rotate(20deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .float{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Shared SVG defs: gold gradient, heart clip (0-1 units), ornament, flowers, corner -->
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EBD08B"/><stop offset=".5" stop-color="#C6A15B"/><stop offset="1" stop-color="#E4C87C"/></linearGradient>
+    <clipPath id="heartClip" clipPathUnits="objectBoundingBox"><path d="M.5 1C.15.72 0 .52 0 .3 0 .13.13 0 .28 0 .38 0 .46.05 .5.14 .54.05 .62 0 .72 0 .87 0 1 .13 1 .3 1 .52 .85.72 .5 1Z"/></clipPath>
+    <symbol id="orn" viewBox="0 0 200 14"><path d="M6 7H84M116 7H194" stroke="#C6A15B" stroke-width="1" fill="none"/><path d="M100 1l6 6-6 6-6-6z" fill="#C6A15B"/><circle cx="88" cy="7" r="2" fill="#C6A15B"/><circle cx="112" cy="7" r="2" fill="#C6A15B"/></symbol>
+    <symbol id="fl" viewBox="-12 -12 24 24"><g fill="#E9B9B3" stroke="#d99f98" stroke-width=".5"><circle cy="-6" r="5"/><circle cy="-6" r="5" transform="rotate(72)"/><circle cy="-6" r="5" transform="rotate(144)"/><circle cy="-6" r="5" transform="rotate(216)"/><circle cy="-6" r="5" transform="rotate(288)"/></g><circle r="3" fill="#C6A15B"/></symbol>
+    <symbol id="corner" viewBox="0 0 120 120">
+      <path d="M2 6C42 10 74 40 80 84" stroke="#7D8568" stroke-width="1.6" fill="none"/>
+      <g fill="#7D8568" opacity=".85"><ellipse cx="34" cy="17" rx="14" ry="5" transform="rotate(22 34 17)"/><ellipse cx="52" cy="38" rx="13" ry="4.5" transform="rotate(55 52 38)"/><ellipse cx="70" cy="62" rx="12" ry="4.5" transform="rotate(78 70 62)"/><ellipse cx="14" cy="30" rx="11" ry="4" transform="rotate(100 14 30)"/><ellipse cx="62" cy="14" rx="11" ry="4" transform="rotate(-20 62 14)"/></g>
+      <use href="#fl" x="8" y="8" width="34" height="34"/><use href="#fl" x="56" y="42" width="24" height="24"/><use href="#fl" x="74" y="80" width="16" height="16"/>
+    </symbol>
+  </defs>
+</svg>
+
+<svg class="corner tl" aria-hidden="true" viewBox="0 0 120 120"><use href="#corner"/></svg>
+<svg class="corner tr" aria-hidden="true" viewBox="0 0 120 120"><use href="#corner"/></svg>
+<svg class="corner bl" aria-hidden="true" viewBox="0 0 120 120"><use href="#corner"/></svg>
+<svg class="corner br" aria-hidden="true" viewBox="0 0 120 120"><use href="#corner"/></svg>
+<div class="float" id="float" aria-hidden="true"></div>
+
+<!-- ============ SCREEN 1: OPENING ============ -->
+<main class="screen" id="intro">
+  <p class="kicker">A LITTLE SURPRISE FOR YOU</p>
+  <h1>Two journeys. One beautiful chapter.</h1>
+  <p class="names">Trupti ♡ Krushna</p>
+  <p class="sub">We've got something special to share with you...</p>
+  <svg class="seal" viewBox="0 0 100 92" aria-hidden="true">
+    <defs><linearGradient id="sealg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3E2B0"/><stop offset=".5" stop-color="#C6A15B"/><stop offset="1" stop-color="#B88F45"/></linearGradient></defs>
+    <path d="M50 90C14 64 2 46 2 28 2 12 15 2 29 2 39 2 47 7 50 15 53 7 61 2 71 2 85 2 98 12 98 28 98 46 86 64 50 90Z" fill="url(#sealg)" stroke="#fff7d6" stroke-width="1.5"/>
+    <text x="50" y="52" text-anchor="middle" font-family="Great Vibes,cursive" font-size="28" fill="#FFF8ED">T ♡ K</text>
+  </svg>
+  <button class="btn" id="openBtn" type="button">OPEN YOUR INVITATION ♡</button>
+</main>
+
+<!-- ============ SCREEN 2: SCRATCH CARD ============ -->
+<main class="screen card" id="card" hidden>
+  <h2 tabindex="-1" id="cardTitle">SAVE THE DATE</h2>
+  <!-- CUSTOMISE NAMES: edit text below (and in the hidden reveal block) -->
+  <p class="names">Trupti &amp; Krushna</p>
+  <svg class="orn" viewBox="0 0 200 14" aria-hidden="true"><use href="#orn"/></svg>
+  <p class="instr">A little secret is hiding beneath this heart...</p>
+
+  <div class="heart-wrap" id="wrap">
+    <!-- Hidden content (CUSTOMISE DATE HERE). Lives under the canvas coating. -->
+    <div class="reveal clipped" aria-live="polite">
+      <p class="r1">IT'S OFFICIAL! ♡</p>
+      <p class="r2">TRUPTI &amp; KRUSHNA</p>
+      <p class="r3">ARE GETTING ENGAGED!</p>
+      <p class="date"><b class="d1">SUNDAY</b><b class="d2">01 NOVEMBER</b><b class="d3">2026</b></p>
+    </div>
+    <!-- Scratch coating: drawn in JS, erased with destination-out -->
+    <canvas class="scratch clipped" id="scratch" role="img" aria-label="Scratch card. Drag your finger or mouse across the golden heart to reveal the date."></canvas>
+    <div class="sheen clipped"></div>
+    <svg class="outline" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 100C15 72 0 52 0 30 0 13 13 0 28 0 38 0 46 5 50 14 54 5 62 0 72 0 87 0 100 13 100 30 100 52 85 72 50 100Z" fill="none" stroke="url(#gold)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>
+    <div class="hint" id="hint" aria-hidden="true">👆</div>
+  </div>
+  <p class="tip" id="tip">Scratch here to reveal our special day ✨</p>
+
+  <div class="details" id="details" hidden>
+    <svg class="orn" viewBox="0 0 200 14" aria-hidden="true"><use href="#orn"/></svg>
+    <p class="tag">Two hearts. Two careers. One beautiful journey.</p>
+    <p class="when">SUNDAY, 1 NOVEMBER 2026 · <span>11:00 AM</span><br>BALAJI MANDIR, BADNAPUR</p>
+    <p class="note">We can't wait to celebrate this special beginning with you.</p>
+    <p class="love">With love, The CA Coder Couple</p>
+    <button class="btn ghost" id="again" type="button">SCRATCH AGAIN ♡</button>
+  </div>
+
+  <svg class="scene" viewBox="0 0 300 110" role="img" aria-label="Illustration of a couple sitting together watching the sunset">
+    <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6D5CC"/><stop offset=".6" stop-color="#FBE6C8"/><stop offset="1" stop-color="#FFF1D6"/></linearGradient></defs>
+    <rect width="300" height="110" fill="url(#sky)"/>
+    <circle cx="150" cy="66" r="26" fill="#E9B16E" opacity=".85"/><circle cx="150" cy="66" r="38" fill="#F3C98B" opacity=".3"/>
+    <path d="M0 84C50 70 90 78 140 84S250 72 300 82V110H0Z" fill="#7D8568"/>
+    <path d="M0 96C60 88 120 98 180 92S260 90 300 96V110H0Z" fill="#5f6850"/>
+    <g fill="#454936"><circle cx="141" cy="70" r="5.5"/><path d="M132 92Q132 76 141 76T150 92Z"/><circle cx="157" cy="72" r="5"/><circle cx="157" cy="66" r="3"/><path d="M149 92Q149 79 157 79T165 92Z"/></g>
+    <g fill="#fff" opacity=".8"><path d="M40 22l1.6 4 4 1.6-4 1.6L40 33l-1.6-3.8-4-1.6 4-1.6z"/><path d="M250 30l1.4 3.4 3.4 1.4-3.4 1.4L250 40l-1.4-3.4-3.4-1.4 3.4-1.4z"/></g>
+  </svg>
+  <div class="chips" aria-label="CA times Engineer"><span>₹ CA</span><span>✈</span><span>♡</span><span>🏋</span><span>&lt;/&gt; Engineer</span></div>
+  <footer>@the_ca_coder_couple</footer>
+</main>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const rnd=(a,b)=>a+Math.random()*(b-a);
+
+/* ---- SCRATCH SETTINGS (customise) ---- */
+const CFG={
+  threshold:0.45,   // fraction of coating that must be cleared to auto-reveal
+  brush:30,         // brush diameter in CSS px
+  checkMs:120       // how often (ms) to measure cleared area while scratching
+};
+const CONFETTI_COLORS=['#C6A15B','#E9B9B3','#7D8568','#FFF8ED','#e7cf8f'];
+
+/* ---- Background hearts & sparkles (CSS-animated, created once) ---- */
+(function ambient(){
+  if(reduce) return;
+  const f=$('#float');
+  for(let i=0;i<14;i++){
+    const s=document.createElement('span'); s.className='fh'; s.textContent=i%2?'♡':'♥';
+    s.style.cssText=`left:${rnd(2,96)}%;font-size:${rnd(11,22)}px;color:${i%3?'#E9B9B3':'#C6A15B'};animation-duration:${rnd(10,19)}s;animation-delay:${-rnd(0,18)}s`;
+    f.appendChild(s);
+  }
+  for(let i=0;i<14;i++){
+    const s=document.createElement('span'); s.className='sp'; s.textContent='✦';
+    s.style.cssText=`left:${rnd(3,96)}%;top:${rnd(4,94)}%;font-size:${rnd(7,13)}px;animation-duration:${rnd(2.2,4.5)}s;animation-delay:${-rnd(0,4)}s`;
+    f.appendChild(s);
+  }
+})();
+
+/* ---- Scratch card ---- */
+const cv=$('#scratch'), ctx=cv.getContext('2d',{willReadFrequently:true});
+const wrap=$('#wrap'), hint=$('#hint'), details=$('#details');
+let W=0,H=0,dpr=1,cssW=0,baseline=1,done=false,drawing=false,pid=null,last=null,lastCheck=0;
+
+// Same heart outline as the CSS clip-path, in 0-1 units scaled to the canvas.
+function heart(c,w,h){
+  c.beginPath(); c.moveTo(.5*w,h);
+  c.bezierCurveTo(.15*w,.72*h,0,.52*h,0,.3*h);
+  c.bezierCurveTo(0,.13*h,.13*w,0,.28*w,0);
+  c.bezierCurveTo(.38*w,0,.46*w,.05*h,.5*w,.14*h);
+  c.bezierCurveTo(.54*w,.05*h,.62*w,0,.72*w,0);
+  c.bezierCurveTo(.87*w,0,w,.13*h,w,.3*h);
+  c.bezierCurveTo(w,.52*h,.85*w,.72*h,.5*w,h); c.closePath();
+}
+
+// (Re)build the metallic gold coating. Canvas pixels = CSS size x devicePixelRatio (capped at 2)
+// so strokes stay sharp on retina screens and pointer maths stays accurate.
+function setup(){
+  const r=cv.getBoundingClientRect(); if(!r.width) return;
+  dpr=Math.min(window.devicePixelRatio||1,2); cssW=r.width;
+  W=cv.width=Math.round(r.width*dpr); H=cv.height=Math.round(r.height*dpr);
+  ctx.globalCompositeOperation='source-over'; ctx.clearRect(0,0,W,H);
+  ctx.save(); heart(ctx,W,H); ctx.clip();
+  const g=ctx.createLinearGradient(0,0,W,H);
+  ['#F1DFA8','#C6A15B','#F6E7B8','#B58B42','#E3C57B','#CDA85F'].forEach((c,i,a)=>g.addColorStop(i/(a.length-1),c));
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  ctx.globalAlpha=.22; ctx.strokeStyle='#fff'; ctx.lineWidth=2*dpr;           // brushed-metal shimmer lines
+  for(let x=-H;x<W;x+=14*dpr){ctx.beginPath();ctx.moveTo(x,H);ctx.lineTo(x+H,0);ctx.stroke();}
+  ctx.globalAlpha=.35;                                                         // fine glitter
+  for(let i=0;i<260;i++){ctx.fillStyle=Math.random()<.5?'#fff':'#9a7632';ctx.fillRect(Math.random()*W,Math.random()*H,dpr*rnd(.8,2),dpr*rnd(.8,2));}
+  ctx.globalAlpha=.28; ctx.fillStyle='#7a5a1f'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.font=`${W*.2}px serif`; ctx.fillText('♡',W/2,H*.42);                     // embossed heart motif
+  ctx.font=`600 ${W*.04}px sans-serif`; ctx.fillText('SCRATCH HERE',W/2,H*.62);
+  ctx.restore();
+  baseline=Math.max(1,opaque());
+  cv.style.visibility='visible';
+}
+
+// Count (sampled) opaque pixels. Only pixels still coated have alpha > 128.
+function opaque(){
+  const d=ctx.getImageData(0,0,W,H).data; let n=0;
+  for(let i=3;i<d.length;i+=20) if(d[i]>128) n++;   // every 5th pixel
+  return n;
+}
+function check(force){
+  const now=performance.now();
+  if(!force && now-lastCheck<CFG.checkMs) return;
+  lastCheck=now;
+  if(1-opaque()/baseline>=CFG.threshold) reveal();
+}
+
+function pos(e){                                     // client coords -> canvas pixel coords
+  const r=cv.getBoundingClientRect();
+  return {x:(e.clientX-r.left)*W/r.width, y:(e.clientY-r.top)*H/r.height};
+}
+function stroke(a,b){
+  ctx.globalCompositeOperation='destination-out';   // erases pixels instead of painting
+  ctx.lineWidth=CFG.brush*dpr; ctx.lineCap='round'; ctx.lineJoin='round';
+  ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+}
+// NOTE: pointerdown alone draws nothing, so a simple click/tap can never reveal the date.
+cv.addEventListener('pointerdown',e=>{
+  if(done||drawing) return;
+  drawing=true; pid=e.pointerId; last=pos(e);
+  try{cv.setPointerCapture(pid);}catch(_){}
+  hint.classList.add('off'); e.preventDefault();
+});
+cv.addEventListener('pointermove',e=>{
+  if(!drawing||e.pointerId!==pid||done) return;
+  const evs=e.getCoalescedEvents?e.getCoalescedEvents():[e];   // smoother lines on fast swipes
+  (evs.length?evs:[e]).forEach(ev=>{const p=pos(ev);stroke(last,p);last=p;});
+  check(false); e.preventDefault();
+});
+function end(e){ if(e.pointerId!==pid) return; drawing=false; pid=null; if(!done) check(true); }
+cv.addEventListener('pointerup',end); cv.addEventListener('pointercancel',end);
+// Older iOS Safari: block page scroll only while scratching (CSS touch-action handles modern browsers).
+cv.addEventListener('touchmove',e=>{ if(drawing) e.preventDefault(); },{passive:false});
+cv.addEventListener('contextmenu',e=>e.preventDefault());
+
+function reveal(){
+  if(done) return; done=true; drawing=false;
+  cv.classList.add('gone');                          // graceful fade of remaining coating
+  setTimeout(()=>{ if(done) cv.style.visibility='hidden'; },reduce?0:950);
+  details.hidden=false; $('#tip').textContent='';
+  confetti(); hearts();
+  setTimeout(()=>details.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'}),600);
+}
+$('#again').addEventListener('click',()=>{
+  done=false; details.hidden=true; $('#tip').textContent='Scratch here to reveal our special day ✨';
+  setup(); cv.classList.remove('gone'); hint.classList.remove('off');
+  wrap.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+});
+
+// Rebuild only when width changes (ignores mobile URL-bar height jitter). Resets unfinished scratching.
+let rt; window.addEventListener('resize',()=>{
+  clearTimeout(rt); rt=setTimeout(()=>{ if(!done&&!$('#card').hidden&&Math.abs(cv.getBoundingClientRect().width-cssW)>1) setup(); },150);
+});
+
+/* ---- Celebration ---- */
+let cid=0;
+function confetti(){
+  if(reduce) return;
+  const c=$('#confetti'), x=c.getContext('2d'); c.width=innerWidth; c.height=innerHeight;
+  const ps=Array.from({length:110},()=>({x:innerWidth/2+rnd(-40,40),y:innerHeight*.45,vx:rnd(-6,6),vy:rnd(-17,-5),s:rnd(5,10),r:rnd(0,6),vr:rnd(-.3,.3),c:CONFETTI_COLORS[Math.random()*5|0],h:Math.random()<.3}));
+  cancelAnimationFrame(cid);                        // never run two loops at once
+  const t0=performance.now();
+  (function f(t){
+    x.clearRect(0,0,c.width,c.height);
+    const life=1-(t-t0)/3600;
+    if(life<=0){return;}
+    ps.forEach(p=>{p.vy+=.3;p.vx*=.992;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+      x.save();x.translate(p.x,p.y);x.rotate(p.r);x.globalAlpha=life;x.fillStyle=p.c;
+      if(p.h){x.font=p.s*2+'px serif';x.fillText('♥',0,0);}else x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);
+      x.restore();});
+    cid=requestAnimationFrame(f);
+  })(t0);
+}
+function hearts(){
+  if(reduce) return;
+  for(let i=0;i<16;i++){
+    const s=document.createElement('span'); s.className='bh'; s.textContent=i%2?'♥':'♡';
+    s.style.cssText=`left:${rnd(5,92)}%;font-size:${rnd(16,30)}px;color:${i%3?'#E9B9B3':'#C6A15B'};animation-duration:${rnd(2.4,3.8)}s;animation-delay:${rnd(0,.8)}s`;
+    s.addEventListener('animationend',()=>s.remove()); document.body.appendChild(s);
+  }
+}
+
+/* ---- Open invitation ---- */
+$('#openBtn').addEventListener('click',()=>{
+  $('#intro').classList.add('leaving');
+  setTimeout(()=>{
+    $('#intro').hidden=true; $('#card').hidden=false; window.scrollTo(0,0);
+    setup();                                         // card is laid out now, so the canvas can be measured
+    requestAnimationFrame(()=>{ $('#card').classList.add('show'); $('#cardTitle').focus({preventScroll:true}); });
+  },reduce?0:650);
+},{once:true});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "save-the-date-trupti-krushna-royal",
+  "version": "2.0.0",
+  "description": "Royal Indian Luxury Wedding & Engagement Invitation Website for Trupti & Krushna (@the_ca_coder_couple)",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node build-standalone.js",
+    "share": "npx --yes localtunnel --port 3000"
+  },
+  "keywords": [
+    "wedding-invitation",
+    "save-the-date",
+    "trupti-and-krushna",
+    "royal-indian-wedding",
+    "interactive"
+  ],
+  "author": "The CA Coder Couple (Trupti & Krushna)",
+  "license": "MIT"
+}
